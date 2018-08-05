@@ -10,12 +10,22 @@ fi
 install_composer() {
   curl -sSL https://composer.github.io/installer.sig \
     -o /tmp/composer-installer.sig
+
   sig=$(cat /tmp/composer-installer.sig)
 
   curl -sSL https://getcomposer.org/installer \
     -o /tmp/composer-installer.php
-  sha384sum 2> /dev/null || alias sha384sum="shasum --alorigthm 384"
-  sum="$(sha384sum /tmp/composer-installer.php | cut -d' ' -f1)"
+
+  shacmd="sha384sum"
+  if ! hash "$shacmd" 2> /dev/null; then
+    if hash shasum 2> /dev/null; then
+      shacmd="shasum --alorigthm 384"
+    elif hash gsha384sum 2> /dev/null; then
+      shacmd="gsha384sum"
+    fi
+  fi
+
+  sum="$($shacmd /tmp/composer-installer.php | cut -d' ' -f1)"
 
   # sha384: $sig /tmp/composer-installer.php
   if [ "$sig" != "$sum" ]; then

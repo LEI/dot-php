@@ -1,10 +1,9 @@
 ---
 role:
   pkg:
-    # sha384sum
-    - name: coreutils
-      os: ["alpine"]
-    - openssl
+    # - name: coreutils
+    #   os: ["alpine"]
+    # - openssl
     - php
     # - name: php-composer
     #   os: ["archlinux"]
@@ -12,6 +11,8 @@ role:
     #   os: ["darwin"]
     # - name: php7.0 php7.0-cli php7.0-fpm
     #   os: ["debian"]
-  post_install:
-    - ./install-composer.sh
-    # - export PATH=$PATH:~/.composer/vendor/bin
+    - composer
+  # post_install:
+  #   - ./install-composer.sh
+  #   # - PATH="$HOME/.config/composer/vendor/bin:$PATH"
+  #   # - export PATH=$PATH:~/.composer/vendor/bin
