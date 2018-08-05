@@ -23,7 +23,6 @@ install_composer() {
     exit 1
   fi
 
-  php /tmp/composer-installer.php --help
   chmod 0755 /tmp/composer-installer.php
   php /tmp/composer-installer.php \
     --install-dir=/usr/local/bin \

@@ -4,8 +4,7 @@ role:
     # sha384sum
     - name: coreutils
       os: ["alpine"]
-    - name: openssl
-      os: ["!alpine"]
+    - openssl
     - php
     # - name: php-composer
     #   os: ["archlinux"]
