@@ -14,7 +14,7 @@ if ! hash composer 2> /dev/null; then
   sig=$(cat /tmp/composer-installer.sig)
   sum="$(sha384sum /tmp/composer-installer.php | cut -d' ' -f1)"
   # sha384: $sig /tmp/composer-installer.php
-  if [ "$sig" -ne "$sum" ]; then
+  if [ "$sig" = "$sum" ]; then
     echo "sha384 sum mismatch"
     exit 1
   fi
