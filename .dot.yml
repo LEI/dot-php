@@ -1,9 +1,11 @@
 ---
 role:
   pkg:
-    - name: busybox
+    # sha384sum
+    - name: coreutils
       os: ["alpine"]
-    - openssl
+    - name: openssl
+      os: ["!alpine"]
     - php
     # - name: php-composer
     #   os: ["archlinux"]
