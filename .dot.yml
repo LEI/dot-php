@@ -12,7 +12,9 @@ role:
     # - name: php7.0 php7.0-cli php7.0-fpm
     #   os: ["debian"]
     - composer
-  # post_install:
-  #   - ./install-composer.sh
-  #   # - PATH="$HOME/.config/composer/vendor/bin:$PATH"
-  #   # - export PATH=$PATH:~/.composer/vendor/bin
+  post_install:
+    - php --version
+    - composer --version
+    #- ./install-composer.sh
+    # - PATH="$HOME/.config/composer/vendor/bin:$PATH"
+    # - export PATH=$PATH:~/.composer/vendor/bin
