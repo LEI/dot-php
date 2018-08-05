@@ -27,7 +27,9 @@ install_composer() {
   chmod 0755 /tmp/composer-installer.php
   php /tmp/composer-installer.php \
     --install-dir=/usr/local/bin \
-    --filename=composer # --version=
+    --filename=composer \
+    --quiet
+    # --version=
 }
 
 composer_self_update() {
@@ -42,7 +44,7 @@ composer_global_require() {
     # --quiet
     composer --no-interaction \
       global --no-progress \
-      require "$name" # @stable
+      require "$name" # "${name}${release:-@stable}"
   done
 }
 
