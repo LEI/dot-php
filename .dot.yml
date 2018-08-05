@@ -1,6 +1,7 @@
 ---
 role:
   pkg:
+    - openssl
     - php
     # - name: php-composer
     #   os: ["archlinux"]
