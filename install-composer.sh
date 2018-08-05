@@ -10,10 +10,10 @@ fi
 if ! hash composer 2> /dev/null; then
   curl -sSL https://composer.github.io/installer.sig -o /tmp/composer-installer.sig
   curl -sSL https://getcomposer.org/installer -o /tmp/composer-installer.php
-  checksum "sha384:$(cat /tmp/composer-installer.sig)" /tmp/composer-installer.php
   ! sha384sum 2> /dev/null && alias sha384sum="sha --alorigthm 384"
   sig=$(cat /tmp/composer-installer.sig)
   sum="$(sha384sum /tmp/composer-installer.php | cut -d' ' -f1)"
+  # sha384: $sig /tmp/composer-installer.php
   if [ "$sig" -ne "$sum" ]; then
     echo "sha384 sum mismatch"
     exit 1
