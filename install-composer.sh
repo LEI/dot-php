@@ -7,6 +7,11 @@ if ! hash php 2> /dev/null; then
   exit 1
 fi
 
+INSTALL_DIR="/usr/local/bin"
+if [ ! -w "$INSTALL_DIR" ]; then
+  INSTALL_DIR="$HOME/bin"
+fi
+
 install_composer() {
   curl -sSL https://composer.github.io/installer.sig \
     -o /tmp/composer-installer.sig
@@ -35,7 +40,7 @@ install_composer() {
 
   chmod 0755 /tmp/composer-installer.php
   php /tmp/composer-installer.php \
-    --install-dir=/usr/local/bin \
+    --install-dir="$INSTALL_DIR" \
     --filename=composer \
     --quiet
     # --version=
