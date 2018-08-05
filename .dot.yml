@@ -11,10 +11,12 @@ role:
     #   os: ["darwin"]
     # - name: php7.0 php7.0-cli php7.0-fpm
     #   os: ["debian"]
-    - composer
+    - name: composer
+      os: ["!centos"]
   post_install:
     - php --version
+    - command: ./install-composer.sh
+      os: ["centos"]
     - composer --version
-    #- ./install-composer.sh
     # - PATH="$HOME/.config/composer/vendor/bin:$PATH"
     # - export PATH=$PATH:~/.composer/vendor/bin
