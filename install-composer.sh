@@ -1,19 +1,24 @@
 #!/bin/sh
 
+set -e
+
 if ! hash php 2> /dev/null; then
   echo "PHP does not seem installed"
   exit 1
 fi
 
 if ! hash composer 2> /dev/null; then
-  # curl -sSL https://composer.github.io/installer.sig -o /tmp/composer-installer.sig
+  curl -sSL https://composer.github.io/installer.sig -o /tmp/composer-installer.sig
   curl -sSL https://getcomposer.org/installer -o /tmp/composer-installer.php
-  # checksum "sha384:$(cat /tmp/composer-installer.sig)" /tmp/composer-installer.php
-  echo CHECKSUM
-  ! sha384 2> /dev/null && alias sha384="sha --alorigthm 384"
-  sha384 /tmp/composer-installer.php
+  checksum "sha384:$(cat /tmp/composer-installer.sig)" /tmp/composer-installer.php
+  ! sha384sum 2> /dev/null && alias sha384sum="sha --alorigthm 384"
+  sig=$(cat /tmp/composer-installer.sig)
+  sum="$(sha384sum /tmp/composer-installer.php | cut -d' ' -f1)"
+  if [ "$sig" -ne "$sum" ]; then
+    echo "sha384 sum mismatch"
+    exit 1
+  fi
   chmod 0755 /tmp/composer-installer.php
-
   php /tmp/composer-installer.php --install-dir=/usr/local/bin --filename=composer # --version=
 fi
 
