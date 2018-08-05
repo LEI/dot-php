@@ -14,7 +14,7 @@ install_composer() {
 
   curl -sSL https://getcomposer.org/installer \
     -o /tmp/composer-installer.php
-  sha384sum 2> /dev/null || alias sha384sum="sha --alorigthm 384"
+  sha384sum 2> /dev/null || alias sha384sum="shasum --alorigthm 384"
   sum="$(sha384sum /tmp/composer-installer.php | cut -d' ' -f1)"
 
   # sha384: $sig /tmp/composer-installer.php

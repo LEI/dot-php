@@ -1,6 +1,8 @@
 ---
 role:
   pkg:
+    - name: busybox
+      os: ["alpine"]
     - openssl
     - php
     # - name: php-composer
