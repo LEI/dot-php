@@ -11,3 +11,4 @@ role:
     #   os: ["debian"]
   post_install:
     - ./install-composer.sh
+    # - export PATH=$PATH:~/.composer/vendor/bin
