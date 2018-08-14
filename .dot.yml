@@ -17,9 +17,8 @@ role:
     - php --version
     - command: ./install-composer.sh
       os: ["centos"]
-    - echo $PATH
-    - ls -la /usr/local/bin
-    - ls -la $HOME/bin
-    - composer --version
+    - |
+      PATH="$PATH:$HOME/bin"
+      composer --version
     # - PATH="$HOME/.config/composer/vendor/bin:$PATH"
     # - export PATH=$PATH:~/.composer/vendor/bin
