@@ -8,6 +8,9 @@ if ! hash php 2> /dev/null; then
 fi
 
 INSTALL_DIR="/usr/local/bin"
+if [ ! -d "$INSTALL_DIR" ]; then
+  mkdir "$INSTALL_DIR"
+fi
 if [ ! -w "$INSTALL_DIR" ]; then
   INSTALL_DIR="$HOME/bin"
 fi
