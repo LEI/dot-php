@@ -4,7 +4,8 @@ role:
     # - name: coreutils
     #   os: ["alpine"]
     # - openssl
-    - php
+    - name: php
+      action: install
     # - name: php-composer
     #   os: ["archlinux"]
     # - name: homebrew/homebrew-php/php70
@@ -22,3 +23,6 @@ role:
       composer --version
     # - PATH="$HOME/.config/composer/vendor/bin:$PATH"
     # - export PATH=$PATH:~/.composer/vendor/bin
+  # post_remove:
+  #   - command: # TODO: remove composer
+  #     os: ["centos"]
