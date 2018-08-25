@@ -15,12 +15,12 @@ role:
     - name: composer
       os: ["!centos"]
   post_install:
-    - php --version
+    - php --version || true
     - command: ./install-composer.sh
       os: ["centos"]
     - |
       PATH="$PATH:$HOME/bin"
-      composer --version
+      composer --version || true
     # - PATH="$HOME/.config/composer/vendor/bin:$PATH"
     # - export PATH=$PATH:~/.composer/vendor/bin
   # post_remove:
