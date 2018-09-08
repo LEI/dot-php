@@ -6,6 +6,10 @@ role:
     # - openssl
     - name: php
       action: install
+      os: ["!debian8"]
+    - name: php5
+      action: install
+      os: debian8
     # - name: php-composer
     #   os: ["archlinux"]
     # - name: homebrew/homebrew-php/php70
