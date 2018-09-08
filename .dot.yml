@@ -6,10 +6,10 @@ role:
     # - openssl
     - name: php
       action: install
-      os: ["!debian8"]
+      os: ["!jessie"]
     - name: php5
       action: install
-      os: debian8
+      os: jessie # debian8
     # - name: php-composer
     #   os: ["archlinux"]
     # - name: homebrew/homebrew-php/php70
@@ -17,11 +17,11 @@ role:
     # - name: php7.0 php7.0-cli php7.0-fpm
     #   os: ["debian"]
     - name: composer
-      os: ["!centos"]
+      os: ["!centos", "!jessie"]
   post_install:
     - php --version
     - command: ./install-composer.sh
-      os: ["centos"]
+      os: ["centos", "jessie"]
     - |
       PATH="$PATH:$HOME/bin"
       composer --version
