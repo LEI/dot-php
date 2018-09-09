@@ -27,6 +27,11 @@ role:
       composer --version
     # - PATH="$HOME/.config/composer/vendor/bin:$PATH"
     # - export PATH=$PATH:~/.composer/vendor/bin
-  # post_remove:
-  #   - command: # TODO: remove composer
-  #     os: ["centos"]
+  post_remove:
+    # rm "$HOME/bin/composer" || rm /usr/local/bin/composer
+    - command: rm $(command -v composer)
+      if: "hash composer"
+      os: ["centos", "jessie"]
+    # - command: rm -r ~/.composer
+    #   if: '[ "${DOT_COMPOSER_CLEAR:-0}" -eq 1 ]'
+    #   # os: ["centos", "jessie"]
