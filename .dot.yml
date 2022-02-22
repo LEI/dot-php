@@ -6,10 +6,10 @@ role:
     # - openssl
     - name: php
       action: install
-      os: ["!jessie"]
+      os: ["!debian"]
     - name: php5
       action: install
-      os: jessie # debian8
+      os: debian # debian8
     # - name: php-composer
     #   os: ["archlinux"]
     # - name: homebrew/homebrew-php/php70
@@ -17,11 +17,11 @@ role:
     # - name: php7.0 php7.0-cli php7.0-fpm
     #   os: ["debian"]
     - name: composer
-      os: ["!centos", "!jessie"]
+      os: ["!centos", "!debian"]
   post_install:
     - php --version
     - command: ./install-composer.sh
-      os: ["centos", "jessie"]
+      os: ["centos", "debian"]
     - |
       PATH="$PATH:$HOME/bin"
       composer --version
@@ -31,7 +31,7 @@ role:
     # rm "$HOME/bin/composer" || rm /usr/local/bin/composer
     - command: rm $(command -v composer)
       if: "hash composer"
-      os: ["centos", "jessie"]
+      os: ["centos", "debian"]
     # - command: rm -r ~/.composer
     #   if: '[ "${DOT_COMPOSER_CLEAR:-0}" -eq 1 ]'
-    #   # os: ["centos", "jessie"]
+    #   # os: ["centos", "debian"]
